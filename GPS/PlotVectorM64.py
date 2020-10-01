@@ -39,7 +39,7 @@ plt.plot(fault[:,0],fault[:,1],'.k',markersize=0.1)
 
 
 plt.quiver(np.append(modelxyz[1:length,0]*1e-3,355),np.append(modelxyz[1:length,1]*1e-3,3905),
-           np.append(model[6::3]*1000,40),np.append(model[7::3]*1000,0),scale=40, 
+           np.append(model[3::3]*1000,40),np.append(model[4::3]*1000,0),scale=40, 
            scale_units='inches',color='orange',headwidth=1,headlength=1) 
       
 plt.quiver(np.append(staxyz[0][1:length]*1e-3,355),np.append(staxyz[1][1:length]*1e-3,3895),np.append(data[1:length,2],40),
@@ -47,7 +47,7 @@ plt.quiver(np.append(staxyz[0][1:length]*1e-3,355),np.append(staxyz[1][1:length]
            scale_units='inches',color='gray',headwidth=1,headlength=1) 
 
 plt.quiver(np.append(modelxyz[0,0]*1e-3,355),np.append(modelxyz[0,1]*1e-3,3875),
-           np.append(model[3]*1000,80),np.append(model[4]*1000,0),scale=90, 
+           np.append(model[0]*1000,80),np.append(model[1]*1000,0),scale=90, 
            scale_units='inches',color='brown',headwidth=1,headlength=1) 
       
 plt.quiver(np.append(staxyz[0][0]*1e-3,355),np.append(staxyz[1][0]*1e-3,3865),np.append(data[0,2],80),

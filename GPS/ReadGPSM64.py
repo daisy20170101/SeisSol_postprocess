@@ -18,8 +18,8 @@ sta = np.loadtxt('GPS_number_M64.txt')
 sta = sta[:,0]
 nsta = sta.size
 
-vec = np.array([0,0,0])
-xyz = np.array([0,0,0])
+vec = np.array([])
+xyz = np.array([])
 
 for ista in range(0,nsta):
     
