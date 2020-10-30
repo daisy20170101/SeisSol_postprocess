@@ -3,7 +3,9 @@
 """
 Created on Sun Oct 27 11:36:25 2019
 
-@author: root
+Calculate surface displacement along LOS of InSAR data. Example, 2019 M6.4 and M7.1 Ridgecrest 
+
+@author: D. Li
 """
 
 from pythonXdmfReader.pythonXdmfReader import *

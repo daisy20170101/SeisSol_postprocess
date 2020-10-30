@@ -6,7 +6,6 @@ Created on Sun Oct 27 11:36:25 2019
 Plot surface displacements of SeisSol and InSAR records.
 
 @author: D. Li
- 
 """
 
 #from pythonXdmfReader.pythonXdmfReader import *
