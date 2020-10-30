@@ -15,6 +15,9 @@ Change xdmfFilename to be the surface hdf5 output
 
 To be able to use these, you need pythonXdmfReader in SeisSol submodules: https://github.com/SeisSol/SeisSol/tree/master/submodules
 
+![image](https://github.com/daisy20170101/SeisSol_postprocess/blob/main/GPS/M64_R07_new.png)
+ 
+
 ## Ploting surface displacements and InSAR comparison map
 
 To read and plot InSAR point data, use the scripts in InSar/ folder
@@ -24,6 +27,8 @@ To read and plot InSAR point data, use the scripts in InSar/ folder
  2)CalSurfSlp.py: calculate displacement along LOS for SeisSol's surface output;
  
  3) PlotInSar.py: plot SeisSol's displacement at the same pixel as InSAR data and calcualted misfits
+ 
+![image](https://github.com/daisy20170101/SeisSol_postprocess/blob/main/InSar/InSAR.png)
 
 ## Ploting fault output of SeisSol
 
