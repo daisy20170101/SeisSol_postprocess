@@ -3,7 +3,10 @@
 """
 Created on Sun Oct 27 11:36:25 2019
 
-@author: root
+Plot surface displacements of SeisSol and InSAR records.
+
+@author: D. Li
+ 
 """
 
 #from pythonXdmfReader.pythonXdmfReader import *
@@ -26,7 +29,7 @@ y = xyz[1][:]
 
 
 centers = np.loadtxt('surfxyz_M64.txt')
-#slp6 = np.loadtxt(folder+'/YangHauksson/totalslip_M64.txt')
+slp6 = np.loadtxt('totalslip_M64.txt')
 slp7 = np.loadtxt('totalslip_M71.txt')
 
 #slp1 = np.loadtxt('InSar_xyz_slp_M64.txt')
@@ -38,16 +41,13 @@ modelname = '/import/deadlock-data/dli/Ridgecrest/GPS/'
 fault = np.loadtxt(modelname+'../ruptures.dat')
 fault = fault * 1e-3
 
-plt.figure()
+plt.figure(figsize=(6,4))
 plt.subplot(121)
 
 sc = plt.scatter(x*1e-3,y*1e-3,s=25,c=data/1000,alpha=0.8,vmin=-1,vmax=1,cmap='RdBu_r')
 cl = plt.colorbar(sc)
 cl.set_label('LOS (m)')
-
       
-#plt.xlim( [350, 555])
-#plt.ylim( [3850,4060])
 plt.xlim( [400, 500])
 plt.ylim( [3925,3980])
 plt.plot(fault[:,0],fault[:,1],'.k',markersize=0.1)
@@ -58,7 +58,7 @@ plt.ylabel('y (km)')
 
 plt.subplot(122)
 
-sc = plt.scatter(centers[::4,0]*1e-3,centers[::4,1]*1e-3,s=5,c=slp7[::4],alpha=0.8,vmin=-1,vmax=1,cmap='RdBu_r')
+sc = plt.scatter(centers[::4,0]*1e-3,centers[::4,1]*1e-3,s=5,c=slp6[::4]+slp7[::4],alpha=0.8,vmin=-1,vmax=1,cmap='RdBu_r')
 cl = plt.colorbar(sc)
 cl.set_label('LOS (m)')
 
@@ -86,7 +86,7 @@ plt.xlabel('x (km)')
 #plt.title('Model - Data')
 #plt.xlabel('x (km)')
 
-plt.savefig("InSAR.png",dpi=300)   
+plt.savefig("InSAR.png",dpi=150)   
 
 
 
