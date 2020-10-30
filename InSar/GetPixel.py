@@ -3,7 +3,7 @@
 """
 Created on Fri Oct 25 15:06:20 2019
 
-Get nearst piont to the GPS stations from seissol output
+Get nearst piont to the InSAR stations from seissol output
 
 @author: dli
 """
