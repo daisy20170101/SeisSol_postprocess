@@ -40,12 +40,11 @@ modelname = '/import/deadlock-data/dli/Ridgecrest/GPS/'
 fault = np.loadtxt(modelname+'../ruptures.dat')
 fault = fault * 1e-3
 
-plt.figure(figsize=(6,4))
+plt.figure(figsize=(9,3))
+
 plt.subplot(121)
 
 sc = plt.scatter(x*1e-3,y*1e-3,s=25,c=data/1000,alpha=0.8,vmin=-1,vmax=1,cmap='RdBu_r')
-cl = plt.colorbar(sc)
-cl.set_label('LOS (m)')
       
 plt.xlim( [400, 500])
 plt.ylim( [3925,3980])
