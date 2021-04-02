@@ -22,11 +22,9 @@ To be able to use these, you need pythonXdmfReader in SeisSol submodules: https:
 
 To read and plot InSAR point data, use the scripts in InSar/ folder
  
- 1) GetPixel.py: extract SeisSol's surface output closet to InSAR pixels;
-
- 2)CalSurfSlp.py: calculate displacement along LOS for SeisSol's surface output;
+ 1)CalSurfSlp.py: calculate displacement along LOS for SeisSol's surface output;
  
- 3) PlotInSar.py: plot SeisSol's displacement at the same pixel as InSAR data and calcualted misfits
+ 2) PlotInSar.py: plot SeisSol's displacement at the same pixel as InSAR data and calcualted misfits
  
 ![image](https://github.com/daisy20170101/SeisSol_postprocess/blob/main/InSar/InSAR.png)
 
