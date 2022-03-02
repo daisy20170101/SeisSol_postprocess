@@ -4,4 +4,8 @@ We use Jupyter Notebook to visualize and analyse SeisSol output, inlcuding fault
 
 ## prerequisites
 ### seissolxdmf
-download: https://pypi.org/project/seissolxdmf/
+$ pip install seissolxdmf 
+
+or
+
+download from: https://pypi.org/project/seissolxdmf/
