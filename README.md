@@ -9,3 +9,5 @@ $ pip install seissolxdmf
 or
 
 download from: https://pypi.org/project/seissolxdmf/
+
+## how to use?
