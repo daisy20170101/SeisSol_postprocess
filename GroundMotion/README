@@ -1,0 +1,55 @@
+1. Mesh
+python /import/deadlock-data/dli/easi_2019-5/Meshing/GocadRelatedScripts/createGOCADTSurfNXNY_netcdf.py --proj '+init=EPSG:5936' alu_60_7_cut.nc fault.stl
+python /import/deadlock-data/dli/easi_2019-5/Meshing/GocadRelatedScripts/createGOCADTSurfNXNY_netcdf.py --proj '+init=EPSG:5936' alaska.nc topo.stl
+
+2. hypocenter
+Transfer hypocenter (usgs) WGS84 long/lat to UTM Alaska
+
+cs2cs EPSG:4326 EPSG:5936  <<EOF
+55.364N 157.888W
+EOF
+
+3. GNSS stations
+cs2cs EPSG:4326 EPSG:5936 <<EOF
+> 55.3493 -160.4768
+> 56.3073 -158.5038
+> 59.1082 -159.0915
+> 54.8310 -159.5896
+> 56.9304 -158.6186
+> 55.9087 -160.4073
+> EOF
+place_receivers -d 1.0 -r gnss_stations.xyz  -m mesh/mesh1_f800_L600 -o gnss_stations_mesh.xyz
+
+
+
+4. get synthetic teleseismic data
+
+python3 /import/deadlock-data/dli/easi_2019-11/TuSeisSolScripts/TeleseismicDataRelated/computeMomentTensorSubSeisSol.py shallowpatch/s11-fault.xdmf --oneDvel 1Dvelocity.dat --NZ 1 --NH 1 --invertSld --vH 0 1
+python3 /import/deadlock-data/dli/easi_2019-11/TuSeisSolScripts/TeleseismicDataRelated/drawMapFromMomentTensorFile.py PointSourceFile_1_1.h5 --proj '+init=EPSG:32611' --beachSize 0.2
+
+# Alaska 
+python /import/deadlock-data/dli/easi_2018-11/TuSeisSolScripts/TeleseismicDataRelated/compute_multi_cmt.py spatial --vH 0 1 --NH 4 --NZ 2 --slip_threshold 0.05 --proj "+init=EPSG:5936"  resultNew/alkR057-tp72f-t3-fault.xdmf 1 velocity/1dvel_zneg_mu.txt
+
+python /import/deadlock-data/dli/easi_2018-11/TuSeisSolScripts/TeleseismicDataRelated/plot_stf_cmt.py PointSourceFile_tp20o_4_2.h5  --idSTF 1 --cumulative --MRF tp20o_mrf
+
+python /import/deadlock-data/dli/easi_2018-11/TuSeisSolScripts/TeleseismicDataRelated/generate_figure_teleseismic_synthetics.py Alaska2021_instaseis.ini
+
+3. get Moment rate from seissol *EnF* output
+
+python3 /import/deadlock-data/dli/easi_2019-5/SeisSol/postprocessing/science/concatenate_EnF_t.py --help
+python3 /import/deadlock-data/dli/easi_2019-5/SeisSol/postprocessing/science/concatenate_EnF_t.py --MP 2 folder/prefix
+
+
+1. GroundMotion
+
+GME --MP 2 /import/freenas-m-05-seissol/Ridgecrest/Output_Files/A4B4/f200_o4_cvmh1000m_andersonian_Mw71_Plastic_gamma_085/data-surface.xdmf --noMPI
+
+2.Draw FM
+
+python3 /import/deadlock-data/dli/easi_2018-11/TuSeisSolScripts/TeleseismicDataRelated/computeMomentTensorSubSeisSol.py output/rsl13-fault.xdmf  --oneDvel 1Dvelocity.dat --NZ 1 --NH 1 --vH 0 1
+
+ >> MomentTensor to Plane Solution
+  python /import/deadlock-data/dli/easi_2018-11/TuSeisSolScripts/TeleseismicDataRelated/MomentRate2NodalPlane.py PointSourceFile_1_1.h5 
+
+python3 /import/deadlock-data/dli/easi_2018-11/TuSeisSolScripts/TeleseismicDataRelated/drawMapFromMomentTensorFile.py PointSourceFile_1_1.h5 --proj '+init=EPSG:32646' --beachSize 0.4
+
